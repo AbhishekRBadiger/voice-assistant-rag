@@ -5,6 +5,7 @@
 ---
 
 ## 📋 Table of Contents
+- [Demo Video](#-demo-video)
 - [Quick Start](#-quick-start)
 - [System Requirements](#-system-requirements)
 - [Architecture Overview](#️-architecture-overview)
@@ -20,12 +21,24 @@
 - [Troubleshooting](#-troubleshooting)
 
 ---
+## 🎥 Demo Video
+
+**Watch the complete demo:** https://drive.google.com/file/d/1Hr80yzj0ozNu5HeRSg-KngD9nz46koQT/view?usp=sharing
+
+**Video Contents (3.16 minutes):**
+- ✅ System startup and architecture explanation
+- ✅ Live voice commands with latency measurements
+- ✅ 15 action types demonstrated (calculator, file ops, web search, etc.)
+- ✅ Error handling (unrecognized commands + confirmation prompts)
+- ✅ Performance metrics (<500ms latency achieved)
+- ✅ Action logging and file structure walkthrough
+
 
 ## ⚡ Quick Start (Windows)
 
 ```bat
 REM 1. Clone the project
-git clone <your-repo-url>
+git clone https://github.com/AbhishekRBadiger/voice-assistant-rag
 cd voice_assistant
 
 REM 2. One-command setup (creates venv, installs all deps, downloads models)
@@ -63,12 +76,29 @@ python build_exe.py                        REM build Windows .exe
 ```
 
 ---
+---
+
+## 🔌 Working Offline
+
+After initial setup, the system works **100% offline**. To ensure offline operation:
+```bat
+REM Set offline environment variables
+set HF_HUB_OFFLINE=1
+set TRANSFORMERS_OFFLINE=1
+
+REM Run assistant
+python src\assistant.py
+```
+
+**Note:** Models must be downloaded once with internet before offline use works.
+
+---
 
 ## 💻 System Requirements
 
 | Requirement | Your Setup | Notes |
 |-------------|-----------|-------|
-| Python      | **3.10** ✓ | Use python.org installer, check "Add to PATH" |
+| Python      | **3.10 or 3.12** ✓ | Use python.org installer, check "Add to PATH" |
 | OS          | **Windows 10/11** ✓ | 64-bit required |
 | RAM         | **8 GB** ✓ | Base model uses ~1.2 GB at runtime |
 | Disk        | 2 GB free | Models + venv |
@@ -293,6 +323,11 @@ The resulting `dist/VoiceAssistant/` folder contains:
 - All dependencies (no Python installation required)
 
 ---
+**Download Pre-built Executable:**
+
+If you don't want to build it yourself, download the ready-to-use .exe from [GitHub Releases](https://github.com/AbhishekRBadiger/voice-assistant-rag/releases/tag/v1.0).
+
+---
 
 ## 📊 Running Benchmarks
 
@@ -381,7 +416,7 @@ pip install faster-whisper==1.0.3
 **"webrtcvad not found" or install error**
 ```bat
 REM Use the pre-built wheels variant (no Visual C++ needed)
-pip install webrtcvad-wheels==2.0.10.post1
+pip install webrtcvad-wheels==2.0.14
 ```
 
 **"Microsoft Visual C++ 14.0 is required" during pip install**
