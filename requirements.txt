@@ -1,0 +1,48 @@
+# ═══════════════════════════════════════════════════════════════
+#  Voice Assistant — Requirements
+#  Target: Python 3.10 · Windows 10/11 · 8 GB RAM
+# ═══════════════════════════════════════════════════════════════
+
+# ── Speech-to-Text ───────────────────────────────────────────
+# faster-whisper 1.0.x requires ctranslate2 which has Windows
+# wheels for Python 3.10 on PyPI — no compilation needed.
+faster-whisper==1.0.3
+ctranslate2==4.3.1          # backend for faster-whisper (Windows wheel)
+
+# WebRTC VAD — use the pre-built wheel variant on Windows
+# (plain webrtcvad needs Visual C++ build tools on Windows)
+webrtcvad-wheels==2.0.14
+
+sounddevice==0.4.7           # PortAudio wrapper, ships its own DLL on Windows
+soundfile==0.12.1
+numpy==1.26.4                # last version with full Py3.10 Windows wheels
+
+# ── RAG / Embeddings / Vector Search ────────────────────────
+sentence-transformers==3.0.1
+# faiss-cpu: official Windows wheel available from conda-forge,
+# but pip wheel also works for Py3.10 x64
+faiss-cpu==1.8.0
+# Torch CPU-only build — saves ~2 GB vs CUDA build on 8 GB machine
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.3.1+cpu
+torchvision==0.18.1+cpu
+
+# ── NLP / Intent Parsing ─────────────────────────────────────
+spacy==3.7.5                 # en_core_web_sm ~12 MB
+nltk==3.8.1
+
+# ── Action Execution ─────────────────────────────────────────
+pyautogui==0.9.54            # screenshot support
+psutil==6.0.0                # system metrics (CPU/RAM/disk)
+requests==2.32.3
+
+# ── Utilities ────────────────────────────────────────────────
+pydantic==2.8.2
+pyyaml==6.0.2
+rich==13.7.1                 # pretty terminal output
+loguru==0.7.2
+python-dotenv==1.0.1
+
+# ── Packaging — Windows .exe ─────────────────────────────────
+# PyInstaller 6.x fully supports Python 3.10 + Windows
+pyinstaller==6.9.0

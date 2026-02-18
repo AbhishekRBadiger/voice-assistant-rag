@@ -1,0 +1,418 @@
+[
+  {
+    "id": "open_browser",
+    "name": "Open Web Browser",
+    "category": "application",
+    "description": "Opens the default web browser or navigates to a specific URL",
+    "examples": [
+      "open browser",
+      "open chrome",
+      "open firefox",
+      "launch browser",
+      "start the web browser",
+      "open internet",
+      "go to google",
+      "browse the web",
+      "open edge"
+    ],
+    "parameters": {
+      "url": {
+        "type": "string",
+        "required": false,
+        "default": "https://www.google.com",
+        "description": "URL to navigate to"
+      }
+    },
+    "executor": "open_browser",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "open_notepad",
+    "name": "Open Text Editor",
+    "category": "application",
+    "description": "Opens a text editor application like Notepad or equivalent",
+    "examples": [
+      "open notepad",
+      "open text editor",
+      "launch notepad",
+      "open note",
+      "start notepad",
+      "open editor",
+      "write something",
+      "take notes",
+      "open wordpad"
+    ],
+    "parameters": {},
+    "executor": "open_notepad",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "open_calculator",
+    "name": "Open Calculator",
+    "category": "application",
+    "description": "Opens the system calculator application",
+    "examples": [
+      "open calculator",
+      "launch calculator",
+      "start calculator",
+      "open calc",
+      "calculate something",
+      "do math",
+      "open math app"
+    ],
+    "parameters": {},
+    "executor": "open_calculator",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "open_file_manager",
+    "name": "Open File Manager",
+    "category": "application",
+    "description": "Opens the file explorer or file manager",
+    "examples": [
+      "open file explorer",
+      "open file manager",
+      "open files",
+      "browse files",
+      "open finder",
+      "open my computer",
+      "show files",
+      "explore files"
+    ],
+    "parameters": {
+      "path": {
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Directory path to open"
+      }
+    },
+    "executor": "open_file_manager",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "create_file",
+    "name": "Create New File",
+    "category": "file_operation",
+    "description": "Creates a new empty file at a specified location",
+    "examples": [
+      "create a file",
+      "make a new file",
+      "create file named",
+      "new file",
+      "create text file",
+      "make file called",
+      "create document",
+      "new document"
+    ],
+    "parameters": {
+      "filename": {
+        "type": "string",
+        "required": true,
+        "default": "new_file.txt",
+        "description": "Name of the file to create"
+      },
+      "directory": {
+        "type": "string",
+        "required": false,
+        "default": "~/Desktop",
+        "description": "Directory where the file should be created"
+      }
+    },
+    "executor": "create_file",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "delete_file",
+    "name": "Delete File",
+    "category": "file_operation",
+    "description": "Deletes a specified file from the filesystem",
+    "examples": [
+      "delete file",
+      "remove file",
+      "delete the file",
+      "remove document",
+      "delete document",
+      "trash file",
+      "erase file"
+    ],
+    "parameters": {
+      "filename": {
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Name or path of the file to delete"
+      }
+    },
+    "executor": "delete_file",
+    "destructive": true,
+    "confirmation_required": true
+  },
+
+  {
+    "id": "search_files",
+    "name": "Search Files",
+    "category": "file_operation",
+    "description": "Searches for files matching a pattern or name on the system",
+    "examples": [
+      "search for file",
+      "find file",
+      "look for file",
+      "search files",
+      "find document",
+      "where is file",
+      "locate file",
+      "find files named"
+    ],
+    "parameters": {
+      "query": {
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "File name or pattern to search for"
+      },
+      "directory": {
+        "type": "string",
+        "required": false,
+        "default": "~",
+        "description": "Directory to search in"
+      }
+    },
+    "executor": "search_files",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "get_weather",
+    "name": "Get Weather Information",
+    "category": "system_command",
+    "description": "Fetches and displays current weather information for a location",
+    "examples": [
+      "what is the weather",
+      "weather today",
+      "check weather",
+      "weather forecast",
+      "is it raining",
+      "how hot is it",
+      "temperature outside",
+      "weather in city",
+      "tell me the weather"
+    ],
+    "parameters": {
+      "location": {
+        "type": "string",
+        "required": false,
+        "default": "current",
+        "description": "City or location name"
+      }
+    },
+    "executor": "get_weather",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "set_reminder",
+    "name": "Set Reminder",
+    "category": "system_command",
+    "description": "Sets a reminder or alarm for a specific time",
+    "examples": [
+      "set a reminder",
+      "remind me",
+      "set an alarm",
+      "create reminder",
+      "remind me at",
+      "set timer",
+      "alarm at",
+      "wake me up at",
+      "remind me to"
+    ],
+    "parameters": {
+      "message": {
+        "type": "string",
+        "required": false,
+        "default": "Reminder",
+        "description": "Reminder message"
+      },
+      "time": {
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Time for the reminder (e.g., 3pm, 15:00)"
+      }
+    },
+    "executor": "set_reminder",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "calculate",
+    "name": "Perform Calculation",
+    "category": "system_command",
+    "description": "Evaluates and returns the result of a mathematical expression",
+    "examples": [
+      "calculate",
+      "what is the result of",
+      "compute",
+      "solve",
+      "what is two plus two",
+      "multiply",
+      "divide",
+      "percentage of",
+      "square root of",
+      "math calculation"
+    ],
+    "parameters": {
+      "expression": {
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Mathematical expression to evaluate"
+      }
+    },
+    "executor": "calculate",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "web_search",
+    "name": "Web Search",
+    "category": "search",
+    "description": "Opens the browser and searches the web for a given query",
+    "examples": [
+      "search the web for",
+      "google",
+      "look up",
+      "search online",
+      "find information about",
+      "search for",
+      "search web",
+      "look it up",
+      "search the internet"
+    ],
+    "parameters": {
+      "query": {
+        "type": "string",
+        "required": true,
+        "default": null,
+        "description": "Search query"
+      }
+    },
+    "executor": "web_search",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "get_time",
+    "name": "Get Current Time and Date",
+    "category": "system_command",
+    "description": "Displays the current time and date",
+    "examples": [
+      "what time is it",
+      "current time",
+      "tell me the time",
+      "what is today date",
+      "what day is it",
+      "time now",
+      "date today",
+      "show time",
+      "what time"
+    ],
+    "parameters": {},
+    "executor": "get_time",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "take_screenshot",
+    "name": "Take Screenshot",
+    "category": "system_command",
+    "description": "Captures and saves a screenshot of the current screen",
+    "examples": [
+      "take a screenshot",
+      "screenshot",
+      "capture screen",
+      "take a picture of screen",
+      "screen capture",
+      "save screenshot",
+      "print screen"
+    ],
+    "parameters": {
+      "filename": {
+        "type": "string",
+        "required": false,
+        "default": null,
+        "description": "Filename for the screenshot"
+      }
+    },
+    "executor": "take_screenshot",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "system_info",
+    "name": "Get System Information",
+    "category": "system_command",
+    "description": "Displays system information like CPU, RAM, and disk usage",
+    "examples": [
+      "system info",
+      "system information",
+      "how much ram",
+      "cpu usage",
+      "disk space",
+      "computer stats",
+      "memory usage",
+      "how is my computer doing",
+      "system stats",
+      "show computer info"
+    ],
+    "parameters": {
+      "metric": {
+        "type": "string",
+        "required": false,
+        "default": "all",
+        "description": "Specific metric: cpu | ram | disk | all"
+      }
+    },
+    "executor": "system_info",
+    "destructive": false,
+    "confirmation_required": false
+  },
+
+  {
+    "id": "open_terminal",
+    "name": "Open Terminal",
+    "category": "application",
+    "description": "Opens a terminal or command prompt window",
+    "examples": [
+      "open terminal",
+      "open command prompt",
+      "open cmd",
+      "launch terminal",
+      "open console",
+      "start terminal",
+      "open bash",
+      "command line"
+    ],
+    "parameters": {},
+    "executor": "open_terminal",
+    "destructive": false,
+    "confirmation_required": false
+  }
+]

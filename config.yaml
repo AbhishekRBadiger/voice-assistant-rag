@@ -1,0 +1,69 @@
+# ─────────────────────────────────────────────────────────────
+#  Voice Assistant - Master Configuration
+#  Target: Python 3.10 · Windows 10/11 · 8 GB RAM
+# ─────────────────────────────────────────────────────────────
+
+# ── STT Settings ─────────────────────────────────────────────
+stt:
+  # "base" is the sweet spot for 8 GB RAM:
+  #   - model size on disk: ~145 MB
+  #   - RAM usage at runtime: ~300 MB (INT8)
+  #   - latency on 2s clip: ~150 ms on modern CPU
+  # Switch to "tiny" if latency spikes on older hardware.
+  model_size: "base"
+  model_dir: "models/whisper"
+  language: "en"
+  device: "cpu"               # 8 GB RAM → CPU is safest
+  compute_type: "int8"        # INT8 quantised — fastest on CPU
+  beam_size: 1                # greedy decode — fastest
+  vad_filter: true
+  vad_threshold: 0.5
+  chunk_duration_ms: 30       # VAD frame size (must be 10|20|30)
+  silence_threshold_ms: 700   # ms of silence = end of utterance
+  min_speech_ms: 250          # discard clips shorter than this
+  max_speech_ms: 10000        # hard cap (10 s) per utterance
+
+# ── Audio Settings ────────────────────────────────────────────
+audio:
+  sample_rate: 16000
+  channels: 1
+  dtype: "int16"
+  blocksize: 512
+  # null = use Windows default microphone (WASAPI)
+  # Set to an integer device index to pin to a specific mic.
+  # Run: python -c "import sounddevice; print(sounddevice.query_devices())"
+  device: null
+
+# ── RAG Settings ─────────────────────────────────────────────
+rag:
+  # all-MiniLM-L6-v2: 22 MB, 384-dim, fast on CPU
+  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  embedding_dim: 384
+  index_path: "models/faiss/actions.index"
+  metadata_path: "models/faiss/metadata.json"
+  top_k: 3
+  confidence_threshold: 0.55
+
+# ── Intent Parser Settings ───────────────────────────────────
+intent:
+  spacy_model: "en_core_web_sm"
+  confidence_high: 0.80
+  confidence_medium: 0.60
+  confidence_low: 0.40
+
+# ── Action Executor Settings ─────────────────────────────────
+executor:
+  require_confirmation_for_destructive: true
+  action_log_path: "logs/actions.jsonl"
+  timeout_seconds: 10
+
+# ── Paths ────────────────────────────────────────────────────
+paths:
+  actions_dir: "data/actions"
+  logs_dir: "logs"
+
+# ── UI / Feedback ────────────────────────────────────────────
+ui:
+  show_confidence: true
+  show_timestamps: true
+  verbose: false
