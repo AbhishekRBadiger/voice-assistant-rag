@@ -7,6 +7,7 @@ Python 3.10 · Windows 10/11 · 8 GB RAM
 Microphone → Audio Capture → VAD → STT → RAG → Intent → Executor → Feedback
 
 Usage:
+
   python src/assistant.py                        # microphone mode
   python src/assistant.py --model tiny           # faster, slightly less accurate
   python src/assistant.py --mode file --file x.wav

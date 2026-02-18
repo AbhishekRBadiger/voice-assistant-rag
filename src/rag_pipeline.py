@@ -9,6 +9,8 @@ Vector store   : FAISS IndexFlatIP  (cosine on unit vectors, sub-ms retrieval)
 from __future__ import annotations
 
 import os
+os.environ["HF_HUB_OFFLINE"] = "1"
+os.environ["TRANSFORMERS_OFFLINE"] = "1"
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 import json
@@ -17,6 +19,7 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Optional, Tuple, Dict
+from config import ROOT_DIR
 
 import numpy as np
 from loguru import logger
@@ -102,7 +105,10 @@ class RAGPipeline:
             )
         logger.info(f"[rag] Loading embedder: {self.embedding_model_name} …")
         t0 = time.perf_counter()
-        self._embedder = SentenceTransformer(self.embedding_model_name)
+        self._embedder = SentenceTransformer(
+        self.embedding_model_name,
+        cache_folder=str(ROOT_DIR / "models" / "embeddings")
+        )
         logger.info(
             f"[rag] Embedder loaded in {(time.perf_counter()-t0)*1000:.0f} ms"
         )
